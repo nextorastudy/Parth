@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Parth</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f, #a1c4fd, #c2ffd8);
+      background-size: 600% 600%;
+      animation: gradientBG 20s ease infinite, fadeIn 2s ease-in-out;
+      overflow-x: hidden;
+      color: #333;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }h1 {
+  color: #ff3399;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 3rem;
+  text-shadow: 3px 3px #ffffff88;
+}
+.container {text-align: center; padding: 20px;}
+.wish {
+  background: #fff8fcdd;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 20px;
+  width: 85%;
+  font-size: 1.4rem;
+  color: #555;
+  animation: slideIn 2s ease-in-out;
+}
+@keyframes slideIn {
+  from {transform: translateY(100px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+.gallery img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+.game, .tictactoe {
+  background: #ffffffcc;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 30px auto;
+  width: 85%;
+  animation: fadeIn 2s;
+}
+
+.puzzle-button {
+  font-size: 1.4rem;
+  padding: 10px 18px;
+  margin: 5px;
+  background: #ffd9e6;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+}
+.puzzle-button:hover {
+  background: #ff99bb;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.cell {
+  width: 100px;
+  height: 100px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fffcf9;
+  border: 2px solid #f7c4c4;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.winner {
+  font-size: 1.6rem;
+  margin-top: 15px;
+  color: green;
+  animation: winnerBlink 1s infinite;
+}
+@keyframes winnerBlink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+  </style>
+</head>
+<body>
+  <h1>🎂 हैप्पी बर्थडे पार्थ 🎂</h1>
+  <div class="container">
+    <audio id="birthdaySong" autoplay preload="auto" loop muted>
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_07ab9a5d8e.mp3?filename=happy-birthday-127441.mp3" type="audio/mpeg">
+      तुम्हारा ब्राउज़र ऑडियो सपोर्ट नहीं करता
+    </audio><div class="wish">
+  प्यारे पार्थ,<br><br>
+  तुम्हारा आज चौथा जन्मदिन है और मैं दिल से तुम्हें ढेर सारा प्यार और आशीर्वाद देता हूँ। <br>
+  तुम्हारी मासूम मुस्कान और नटखट हरकतें हमारे दिल को खुश कर देती हैं। <br>
+  तुम्हारे साथ हर पल बिताना मेरे लिए सौभाग्य की बात है। <br>
+  ईश्वर करे तुम हमेशा ऐसे ही हँसते खेलते रहो, खूब पढ़ो, बढ़ो और एक अच्छा इंसान बनो। <br>
+  मैं हमेशा तुम्हारे साथ हूँ – तुम्हारे हर ख्वाब को पूरा करने के लिए। <br><br>
+  🎁 ढेर सारा प्यार और आशीर्वाद 💝<br>
+  — तुम्हारा प्यारा चाचा
+</div>
+
+<div class="gallery">
+  <img src="parth1.jpg" alt="Parth">
+  <img src="parth2.jpg" alt="Parth">
+  <img src="parth3.jpg" alt="Parth">
+  <img src="parth4.jpg" alt="Parth">
+</div>
+
+<div class="game">
+  <h2>🧠 पार्थ का मज़ेदार प्रश्न खेल!</h2>
+  <p id="question">प्रश्न लोड हो रहा है...</p>
+  <div id="options"></div>
+  <p id="feedback"></p>
+  <button class="puzzle-button" onclick="loadQuestion()">🔁 नया प्रश्न</button>
+</div>
+
+<div class="tictactoe">
+  <h2>❌⭕ पार्थ बनाम AI - टिक टैक टो खेलो!</h2>
+  <div class="board" id="board"></div>
+  <p id="tictactoe-result"></p>
+  <button class="puzzle-button" onclick="resetBoard()">🔁 दोबारा खेलो</button>
+</div>
+
+  </div>  <script>
+    const audio = document.getElementById('birthdaySong');
+    window.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.muted = false;
+        audio.play();
+      }
+    });
+
+    const quizData = [
+      { q:'A के बाद कौन आता है?', options:['B','Z','D'], answer:'B' },
+      { q:'1 और 2 जोड़ने पर क्या आता है?', options:['3','4','2'], answer:'3' },
+      { q:'सूरज दिन में कहाँ होता है?', options:['आसमान में','पानी में','बिस्तर में'], answer:'आसमान में' },
+      { q:'तोता क्या खाता है?', options:['मिर्ची','पिज़्ज़ा','टॉफी'], answer:'मिर्ची' },
+      { q:'हाथी का रंग क्या होता है?', options:['ग्रे','नीला','पीला'], answer:'ग्रे' },
+      { q:'2 और 2 कितने होते हैं?', options:['4','5','3'], answer:'4' },
+      { q:'B के बाद कौन आता है?', options:['C','A','D'], answer:'C' },
+      { q:'आम किस मौसम में आता है?', options:['गर्मी','सर्दी','बरसात'], answer:'गर्मी' },
+      { q:'सपने कब आते हैं?', options:['सोते समय','खेलते समय','खाते समय'], answer:'सोते समय' }
+    ];
+    function loadQuestion() {
+      const quiz = quizData[Math.floor(Math.random() * quizData.length)];
+      document.getElementById('question').innerText = quiz.q;
+      const optionContainer = document.getElementById('options');
+      optionContainer.innerHTML = '';
+      document.getElementById('feedback').innerText = '';
+      quiz.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'puzzle-button';
+        btn.innerText = opt;
+        btn.onclick = () => {
+          document.getElementById('feedback').innerText = (opt === quiz.answer) ? '✅ सही जवाब पार्थ! शाबाश!' : '❌ गलत जवाब! फिर से कोशिश करो!';
+        };
+        optionContainer.appendChild(btn);
+      });
+    }
+
+    let boardArr = ["", "", "", "", "", "", "", "", ""];
+    let currentPlayer = "O";
+    let gameOver = false;
+
+    function createBoard() {
+      const board = document.getElementById("board");
+      board.innerHTML = "";
+      boardArr.forEach((val, i) => {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        cell.innerText = val;
+        cell.onclick = () => playerMove(i);
+        board.appendChild(cell);
+      });
+    }
+    function playerMove(index) {
+      if (boardArr[index] === "" && !gameOver) {
+        boardArr[index] = currentPlayer;
+        checkWinner();
+        currentPlayer = "X";
+        createBoard();
+        if (!gameOver) setTimeout(aiMove, 500);
+      }
+    }
+    function aiMove() {
+      const empty = boardArr.map((v, i) => v === "" ? i : null).filter(v => v !== null);
+      const move = empty[Math.floor(Math.random() * empty.length)];
+      if (move !== undefined) {
+        boardArr[move] = "X";
+        checkWinner();
+        currentPlayer = "O";
+        createBoard();
+      }
+    }
+    function checkWinner() {
+      const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+      for (let combo of wins) {
+        const [a, b, c] = combo;
+        if (boardArr[a] && boardArr[a] === boardArr[b] && boardArr[a] === boardArr[c]) {
+          document.getElementById("tictactoe-result").innerText = `🎉 विजेता: ${boardArr[a]==='O'?'पार्थ':'AI'}!`;
+          document.getElementById("tictactoe-result").className = "winner";
+          gameOver = true;
+          return;
+        }
+      }
+      if (!boardArr.includes("")) {
+        document.getElementById("tictactoe-result").innerText = "😄 ड्रा हो गया!";
+        gameOver = true;
+      }
+    }
+    function resetBoard() {
+      boardArr = ["", "", "", "", "", "", "", "", ""];
+      gameOver = false;
+      currentPlayer = "O";
+      document.getElementById("tictactoe-result").innerText = "";
+      createBoard();
+    }
+
+    window.onload = () => {
+      loadQuestion();
+      createBoard();
+    };
+  </script></body>
+</html>
